@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wizeline.heroes.databinding.ItemHeroesBinding
 
-class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(heroesCallBack) {
-    companion object {
-        val heroesCallBack = object : DiffUtil.ItemCallback<Result>() {
+class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROESCOMPARATOR) {
+     object HEROESCOMPARATOR:DiffUtil.ItemCallback<Result>() {
             override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
                 return oldItem == newItem
             }
@@ -18,14 +17,8 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(heroes
                 return oldItem.id == newItem.id
             }
 
-            override fun getChangePayload(oldItem: Result, newItem: Result): Any? {
-                return super.getChangePayload(oldItem, newItem)
-            }
-
         }
-
-    }
-
+//Quitar la responsabilidad de este metodo (inflar)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroesViewHolder {
         val binding = ItemHeroesBinding.inflate(LayoutInflater.from(parent.context))
         return HeroesViewHolder(binding)

@@ -5,6 +5,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.os.Bundle
+import io.reactivex.rxjava3.core.Single
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 
 
 class NetworkClient() {
@@ -13,24 +15,16 @@ class NetworkClient() {
     private val api = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .build()
         .create(HeroesServices::class.java)
 
-    fun getCharacters(onSuccess: (List<Result>?) -> Unit, onError: (Throwable) -> Unit) {
-        val privateKey = "244be7c2496cbf6d331145cc489b4892457cc2c0"
-        val apikey = "6ffcf49b680b7250a6983acd33731f55"
+    fun getCharacters(): Single<Characters> {
+        val privateKey = "1e8e0857a86dcbea912ba81bc4e334fbce19c10d"
+        val apikey = "4540e962dd0f7a0d1c9816120982d21a"
         val ts = System.currentTimeMillis().toString()
         val hash = (ts + privateKey + apikey).toMD5()
-        val response = api.characters(ts, apikey, hash)
-        response.enqueue(object : retrofit2.Callback<Characters> {
-            override fun onResponse(call: Call<Characters>, response: Response<Characters>) {
-                onSuccess(response.body()?.data?.results)
-            }
-
-            override fun onFailure(call: Call<Characters>, t: Throwable) {
-                onError(t)
-            }
-        })
+        return api.characters(ts, apikey, hash)
     }
 }
 

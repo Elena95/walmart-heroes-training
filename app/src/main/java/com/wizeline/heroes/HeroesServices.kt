@@ -1,6 +1,6 @@
 package com.wizeline.heroes
 
-import retrofit2.Call
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,6 +10,6 @@ interface HeroesServices {
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
-    ): Call<Characters>
+    ): Single<Characters>
 
 }
