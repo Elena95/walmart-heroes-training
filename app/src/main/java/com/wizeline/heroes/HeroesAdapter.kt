@@ -37,7 +37,8 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
             tvName.text=hero.name
             tvDescrip.text=hero.description
             tvCuantity.text=binding.root.context.getString(R.string.comic_available,number)
-            Glide.with(binding.root)
+            //image.setImageResource(R.drawable.ic_launcher_foreground)
+            Glide.with(binding.root.context)
                 .load("${hero.thumbnail.path}.${hero.thumbnail.extension}")
                 .into(image)
         }

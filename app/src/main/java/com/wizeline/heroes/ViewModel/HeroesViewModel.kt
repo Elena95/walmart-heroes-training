@@ -10,7 +10,7 @@ class HeroesViewModel(): ViewModel() {
     val resultData= MutableLiveData<List<Result>>()
     //private val heroesAdapter: HeroesAdapter= HeroesAdapter()
 
-    private val repository:NetworkClient=NetworkClient()
+    private val repository:Repository=Repository()
 
     fun getHeroes() {
         repository.getCharacters()
