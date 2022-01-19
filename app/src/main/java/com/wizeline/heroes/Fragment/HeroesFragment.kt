@@ -32,8 +32,6 @@ class HeroesFragment: Fragment(){
 
         NetworkClient().getCharacters().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
             .subscribe({response->
-                //Exito
-                //binding.mRecyclerView.adapter.submitList(response.data.results)
                 adapter.submitList(response.data.results)
 
             },{

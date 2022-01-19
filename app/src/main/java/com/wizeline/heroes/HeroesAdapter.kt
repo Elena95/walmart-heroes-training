@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wizeline.heroes.databinding.ItemHeroesBinding
+import com.bumptech.glide.Glide;
 
 class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROESCOMPARATOR) {
      object HEROESCOMPARATOR:DiffUtil.ItemCallback<Result>() {
@@ -36,6 +37,9 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
             tvName.text=hero.name
             tvDescrip.text=hero.description
             tvCuantity.text=binding.root.context.getString(R.string.comic_available,number)
+            Glide.with(binding.root)
+                .load("${hero.thumbnail.path}.${hero.thumbnail.extension}")
+                .into(image)
         }
     }
 }
