@@ -22,7 +22,7 @@ class HeroesFragment : Fragment() {
     ): View? {
         binding = FragmentHeroesBinding.inflate(inflater, container, false)
         binding.mRecyclerView.adapter = heroesAdapter
-        viewModel.getHeroes()
+        viewModel.getHeroes(0,40)
         observeViewModel()
         return binding.root
     }
