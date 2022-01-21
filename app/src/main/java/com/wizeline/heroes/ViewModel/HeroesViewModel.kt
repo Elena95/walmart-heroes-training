@@ -8,7 +8,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class HeroesViewModel(): ViewModel() {
     val resultData= MutableLiveData<List<Result>>()
-    //private val heroesAdapter: HeroesAdapter= HeroesAdapter()
 
     private val repository:Repository=Repository()
 

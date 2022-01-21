@@ -11,19 +11,20 @@ import com.wizeline.heroes.databinding.ItemHeroesBinding
 
 
 class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROESCOMPARATOR) {
-     object HEROESCOMPARATOR:DiffUtil.ItemCallback<Result>() {
-            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
-                return oldItem.id == newItem.id
-            }
-
+    object HEROESCOMPARATOR : DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem == newItem
         }
-//Quitar la responsabilidad de este metodo (inflar)
+
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+    }
+
+    //Quitar la responsabilidad de este metodo (inflar)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroesViewHolder {
-        val binding = ItemHeroesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = ItemHeroesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HeroesViewHolder(binding)
     }
 
@@ -34,11 +35,11 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
 
     class HeroesViewHolder(private val binding: ItemHeroesBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(hero: Result) = with(binding){
-        val number=hero.comics.available
-            tvName.text=hero.name
-            tvDescrip.text=hero.description
-            tvCuantity.text=binding.root.context.getString(R.string.comic_available,number)
+        fun onBind(hero: Result) = with(binding) {
+            val number = hero.comics.available
+            tvName.text = hero.name
+            tvDescrip.text = hero.description
+            tvCuantity.text = binding.root.context.getString(R.string.comic_available, number)
             Glide.with(binding.root.context)
                 .load("${hero.thumbnail.path}.${hero.thumbnail.extension}")
                 .into(image)

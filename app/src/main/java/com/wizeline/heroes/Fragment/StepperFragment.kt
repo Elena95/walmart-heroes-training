@@ -28,9 +28,9 @@ class StepperFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentStepperBinding.inflate(inflater,null,false)
+        binding = FragmentStepperBinding.inflate(inflater, null, false)
         viewPager = binding.viewPager
-        var activity =  (activity as FragmentActivity).supportFragmentManager
+        var activity = (activity as FragmentActivity).supportFragmentManager
         val pagerAdapter = ViewPagerAdapter(activity)
         binding.viewPager.adapter = pagerAdapter
 
@@ -39,8 +39,7 @@ class StepperFragment : Fragment() {
                 if (position == 0) {
                     binding.prev.visibility = View.GONE
                     currentPage = 0
-                }
-                else if (position == 1) {
+                } else if (position == 1) {
                     binding.prev.visibility = View.VISIBLE
                     binding.next.text = "Next"
                     currentPage = 1
@@ -51,7 +50,7 @@ class StepperFragment : Fragment() {
         })
         binding.next.setOnClickListener {
             if (currentPage < 2) {
-                currentPage ++
+                currentPage++
                 when (currentPage) {
                     0 -> {
                         viewPager.currentItem = 0
@@ -67,7 +66,7 @@ class StepperFragment : Fragment() {
 
         binding.prev.setOnClickListener {
             if (currentPage > 0) {
-                currentPage --
+                currentPage--
                 when (currentPage) {
                     0 -> {
                         viewPager.currentItem = 0
@@ -85,7 +84,8 @@ class StepperFragment : Fragment() {
     }
 
 
-    private inner class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentStateAdapter(fragmentManager, lifecycle) {
+    private inner class ViewPagerAdapter(fragmentManager: FragmentManager) :
+        FragmentStateAdapter(fragmentManager, lifecycle) {
         override fun getItemCount(): Int {
             return 3
         }
@@ -97,7 +97,8 @@ class StepperFragment : Fragment() {
                 }
                 1 -> {
                     HeroesFragment2()
-                }else ->{
+                }
+                else -> {
                     HeroesFragment()
                 }
 

@@ -26,8 +26,6 @@ class HeroesFragment : Fragment() {
         return binding.root
     }
 
-    /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-     }*/
     private fun observeViewModel() {
         viewModel.resultData.observe(viewLifecycleOwner) {
             it?.let {

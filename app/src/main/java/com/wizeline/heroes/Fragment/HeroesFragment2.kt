@@ -22,13 +22,11 @@ class HeroesFragment2 : Fragment() {
     ): View? {
         binding = FragmentHeroes2Binding.inflate(inflater, container, false)
         binding.mRecyclerView.adapter = heroesAdapter
-        viewModel.getHeroes(20,40)
+        viewModel.getHeroes(20, 40)
         observeViewModel()
         return binding.root
     }
 
-    /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-     }*/
     private fun observeViewModel() {
         viewModel.resultData.observe(viewLifecycleOwner) {
             it?.let {
