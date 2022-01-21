@@ -37,9 +37,7 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
         fun onBind(hero: Result) = with(binding){
         val number=hero.comics.available
             tvName.text=hero.name
-
             tvDescrip.text=hero.description
-
             tvCuantity.text=binding.root.context.getString(R.string.comic_available,number)
             Glide.with(binding.root.context)
                 .load("${hero.thumbnail.path}.${hero.thumbnail.extension}")

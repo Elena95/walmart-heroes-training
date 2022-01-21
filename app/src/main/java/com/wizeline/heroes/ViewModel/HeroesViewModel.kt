@@ -12,8 +12,8 @@ class HeroesViewModel(): ViewModel() {
 
     private val repository:Repository=Repository()
 
-    fun getHeroes() {
-        repository.getCharacters()
+    fun getHeroes(offset:Int, limit:Int) {
+        repository.getCharacters(offset, limit)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { response ->

@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.wizeline.heroes.HeroesAdapter
 import com.wizeline.heroes.ViewModel.HeroesViewModel
-import com.wizeline.heroes.databinding.FragmentHeroesBinding
+import com.wizeline.heroes.databinding.FragmentHeroes2Binding
 
-class HeroesFragment : Fragment() {
-    lateinit var binding: FragmentHeroesBinding
+class HeroesFragment2 : Fragment() {
+
+    lateinit var binding: FragmentHeroes2Binding
     private val viewModel: HeroesViewModel = HeroesViewModel()
     private val heroesAdapter: HeroesAdapter = HeroesAdapter()
 
@@ -19,9 +20,9 @@ class HeroesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentHeroesBinding.inflate(inflater, container, false)
+        binding = FragmentHeroes2Binding.inflate(inflater, container, false)
         binding.mRecyclerView.adapter = heroesAdapter
-        viewModel.getHeroes(0,20)
+        viewModel.getHeroes(20,40)
         observeViewModel()
         return binding.root
     }
@@ -35,5 +36,4 @@ class HeroesFragment : Fragment() {
             }
         }
     }
-
-}
+}// Required empty public constructor
