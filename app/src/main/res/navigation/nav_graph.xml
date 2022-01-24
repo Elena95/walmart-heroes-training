@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/fragmentHeroes">
+    <fragment
+        android:name="com.wizeline.heroes.Fragment.HeroesFragment"
+        android:id="@+id/fragmentHeroes"
+        android:label="NavFragmentHeroes"
+        tools:layout="@layout/fragment_heroes"/>
+
+</navigation>
