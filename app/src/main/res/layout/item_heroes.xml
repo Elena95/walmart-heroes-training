@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:cardView="http://schemas.android.com/apk/res-auto">
-    <data/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/carView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         cardView:cardCornerRadius="10dp"
-        cardView:cardElevation="8dp"
-        >
+        cardView:cardElevation="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,46 +26,45 @@
                 android:scaleType="centerCrop"
                 cardView:layout_constraintStart_toStartOf="parent"
                 cardView:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars"
-                 />
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/tvCuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                tools:text="Available comics 16"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 cardView:layout_constraintEnd_toEndOf="@id/image"
                 cardView:layout_constraintStart_toStartOf="@id/image"
                 cardView:layout_constraintTop_toBottomOf="@id/image"
                 cardView:layout_constraintVertical_bias="0.0"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                tools:text="Available comics 16" />
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                tools:text="tvName"
                 cardView:layout_constraintStart_toEndOf="@id/image"
-                cardView:layout_constraintTop_toTopOf="@id/image" />
+                cardView:layout_constraintTop_toTopOf="@id/image"
+                tools:text="tvName" />
 
             <TextView
                 android:id="@+id/tvDescrip"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:autoSizeTextType="uniform"
                 cardView:layout_constraintBottom_toBottomOf="parent"
                 cardView:layout_constraintEnd_toEndOf="parent"
+                cardView:layout_constraintStart_toEndOf="@+id/image"
                 cardView:layout_constraintStart_toStartOf="@id/tvName"
                 cardView:layout_constraintTop_toBottomOf="@+id/tvName"
-                android:autoSizeTextType="uniform"
-                cardView:layout_constraintStart_toEndOf="@+id/image"
                 cardView:layout_constraintVertical_bias="0.466"
                 tools:text="Rick Jones has been Hulk's best bud since day one, but now he's more than a friend...he's a teammate! Transformed by a Gamma energy explosion, A-Bomb's thick, armored skin is just as strong and powerful as it is blue. And when he curls into action, he uses it like a giant bowling ball of destruction!" />
 

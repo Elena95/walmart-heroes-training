@@ -8,12 +8,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class HeroesViewModel(): ViewModel() {
     val resultData= MutableLiveData<List<Result>>()
-    //private val heroesAdapter: HeroesAdapter= HeroesAdapter()
 
     private val repository:Repository=Repository()
 
-    fun getHeroes() {
-        repository.getCharacters()
+    fun getHeroes(offset:Int, limit:Int) {
+        repository.getCharacters(offset, limit)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { response ->
