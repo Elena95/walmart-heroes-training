@@ -4,7 +4,8 @@ import com.wizeline.heroes.Characters
 import com.wizeline.heroes.NetworkClient
 import com.wizeline.heroes.toMD5
 import io.reactivex.rxjava3.core.Single
-//repositoryImplementation, implementa y define los metodos del mi repo
+
+//repositoryImplementation, implementa y define los metodos de mi repo
 //
 class Repository() {
 

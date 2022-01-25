@@ -44,7 +44,7 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
             Glide.with(binding.root.context)
                 .load("${hero.thumbnail.path}.${hero.thumbnail.extension}")
                 .into(image)
-                //.error(R.drawable.ic_launcher_foreground)
+            //.error(R.drawable.ic_launcher_foreground)
         }
     }
 }
