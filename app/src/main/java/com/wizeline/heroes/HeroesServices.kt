@@ -15,8 +15,18 @@ interface HeroesServices {
         @Query("limit") limit: Int,
     ): Single<Characters>
 
-    @GET("characters/{id}")
+    @GET("characters/{id}/comics")
 fun comics(
-      //  @Path("id")id: Stirng,
-)
+        @Path("id")id: String,
+        @Query("ts") ts: String,
+        @Query("apikey") apikey: String,
+        @Query("hash") hash: String,
+): Single<Comics>
+    @GET("characters/{id}/series")
+    fun series(
+        @Path("id")id: String,
+        @Query("ts") ts: String,
+        @Query("apikey") apikey: String,
+        @Query("hash") hash: String,
+    ): Single<Series>
 }
