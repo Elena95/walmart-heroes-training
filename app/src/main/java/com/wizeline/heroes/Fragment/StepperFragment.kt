@@ -10,10 +10,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import com.wizeline.heroes.databinding.FragmentStepperBinding
 
 class StepperFragment : Fragment() {
-    private lateinit var binding: FragmentStepperBinding
+ /*  // private lateinit var binding: FragmentStepperBinding
     private lateinit var viewPager: ViewPager2
 
     var currentPage = 0;
@@ -104,6 +103,8 @@ class StepperFragment : Fragment() {
 
             }
         }
-    }
+    }*/
 
 }
+
+

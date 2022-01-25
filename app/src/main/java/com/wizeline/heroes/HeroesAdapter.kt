@@ -22,7 +22,6 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
 
     }
 
-    //Quitar la responsabilidad de este metodo (inflar)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroesViewHolder {
         val binding = ItemHeroesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HeroesViewHolder(binding)
@@ -35,6 +34,8 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
 
     class HeroesViewHolder(private val binding: ItemHeroesBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+
         fun onBind(hero: Result) = with(binding) {
             val number = hero.comics.available
             tvName.text = hero.name

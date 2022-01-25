@@ -3,16 +3,18 @@ package com.wizeline.heroes
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import com.wizeline.heroes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var navController: NavController
+   // private lateinit var binding: ActivityMainBinding
+  //  private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_main)
+
+
+       /* binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val graph = inflater.inflate(R.navigation.nav_graph)
 
 
-        navControllerFragment.navController.graph = graph
+        navControllerFragment.navController.graph = graph*/
     }
 
 }

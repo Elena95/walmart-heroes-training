@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_stepper_fragment">
+   >
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -12,19 +12,7 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            />
     </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.wizeline.heroes.Fragment.HeroesFragment2"
-        tools:layout="@layout/fragment_heroes2">
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_stepper_fragment"
-        android:name="com.wizeline.heroes.Fragment.StepperFragment"
-        android:label="StepperFragment" />
 </navigation>
