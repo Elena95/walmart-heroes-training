@@ -1,4 +1,5 @@
 <resources>
   <string name="app_name">Heroes</string>
   <string name="comic_available">Available comics: %d</string>
+  <string name="name_hero">%d</string>
 </resources>
