@@ -11,8 +11,8 @@ class HeroesViewModel() : ViewModel() {
 
     private val _resultData = MutableLiveData<List<Result>>()
     val resultData: LiveData<List<Result>> = _resultData
-    private var offset = 0;
-    private var limit = 99;
+    private var offset = 5;
+    private var limit = 5;
     var currentPage = 0;
     private val usesCases=UsesCases()
 
@@ -21,7 +21,8 @@ class HeroesViewModel() : ViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
-                _resultData.value = response.data.results
+                _resultData.postValue(response.data.results)
+
             }, {
                 println("ERROR")
             })

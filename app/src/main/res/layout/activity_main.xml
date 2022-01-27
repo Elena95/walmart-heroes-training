@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_layout"
-        tools:context=".MainActivity"
-        >
+        tools:context=".MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentHeroes"
+            android:name="com.wizeline.heroes.Fragment.HeroesFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.wizeline.heroes.Fragment.HeroesFragment"
-            android:id="@+id/fragmentHeroes"
-            tools:layout="@layout/fragment_heroes"/>
+            tools:layout="@layout/fragment_heroes" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:labelVisibilityMode="labeled"
             android:id="@+id/navigation"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_gravity="start"
-            app:menu="@menu/bottom_view_navigation"/>
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_view_navigation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </layout>
 
