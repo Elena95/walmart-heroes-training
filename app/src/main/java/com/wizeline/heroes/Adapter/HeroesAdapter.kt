@@ -1,4 +1,4 @@
-package com.wizeline.heroes
+package com.wizeline.heroes.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-
+import com.wizeline.heroes.R
+import com.wizeline.heroes.Result
 import com.wizeline.heroes.databinding.ItemHeroesBinding
 
 
-class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROESCOMPARATOR) {
+class HeroesAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(
+        HEROESCOMPARATOR
+    ) {
     object HEROESCOMPARATOR : DiffUtil.ItemCallback<Result>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem == newItem
@@ -28,13 +32,15 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
     }
 
     override fun onBindViewHolder(holder: HeroesViewHolder, position: Int) {
+        val hero = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(hero)
+        }
         holder.onBind(getItem(position))
     }
 
-
     class HeroesViewHolder(private val binding: ItemHeroesBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
 
         fun onBind(hero: Result) = with(binding) {
             val number = hero.comics.available
@@ -44,7 +50,12 @@ class HeroesAdapter : ListAdapter<Result, HeroesAdapter.HeroesViewHolder>(HEROES
             Glide.with(binding.root.context)
                 .load("${hero.thumbnail.path}.${hero.thumbnail.extension}")
                 .into(image)
-            //.error(R.drawable.ic_launcher_foreground)
         }
     }
+
+    class OnClickListener(val clickListener: (result: Result) -> Unit) {
+        fun onClick(result: Result) = clickListener(result)
+    }
+
+
 }

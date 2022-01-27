@@ -20,7 +20,7 @@ data class DataComics(
 
 data class Comic(
     val id: Int?,
-    val title:String,
+    val title: String,
     val thumbnail: Thumbnail,
     val description: String
 )

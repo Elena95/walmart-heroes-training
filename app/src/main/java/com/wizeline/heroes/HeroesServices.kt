@@ -16,17 +16,18 @@ interface HeroesServices {
     ): Single<Characters>
 
     @GET("characters/{id}/comics")
-fun comics(
-        @Path("id")id: String,
+    fun comics(
+        @Path("id") id: Int,
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
-): Single<Comics>
+    ): Single<Comics>
+
     @GET("characters/{id}/series")
     fun series(
-        @Path("id")id: String,
+        @Path("id") id: Int,
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
-    ): Single<Series>
+    ): Single<SeriesDataWrapper>
 }

@@ -25,6 +25,7 @@ data class Result(
     val modified: String,
     val thumbnail: Thumbnail,
     val resourceURI: String,
+    val comics: ComicList
 )
 
 data class Thumbnail(
@@ -32,6 +33,11 @@ data class Thumbnail(
     val extension: String
 )
 
+data class ComicList(
+    val available: Int?,
+    val returned: Int?,
+    val collectionURI: String?,
+)
 
 
 
