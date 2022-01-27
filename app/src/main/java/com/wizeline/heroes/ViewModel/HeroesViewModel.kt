@@ -11,14 +11,13 @@ class HeroesViewModel() : ViewModel() {
 
     private val _resultData = MutableLiveData<List<Result>>()
     val resultData: LiveData<List<Result>> = _resultData
-    private val repository: Repository = Repository()
     private var offset = 0;
     private var limit = 99;
     var currentPage = 0;
+    private val usesCases=UsesCases()
 
-    //second: Capa entre repositorios y viewModel  llamada USECASE,  carpeta de casos de uso
     fun getHeroes(offset: Int) {
-        repository.getCharacters(offset, limit)
+        usesCases.getCharacters(offset, limit)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
