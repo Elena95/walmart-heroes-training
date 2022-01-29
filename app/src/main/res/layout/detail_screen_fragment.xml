@@ -25,47 +25,47 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageHeroe"
-            tools:text="Available comics 16" />
+            tools:text="@string/example" />
 
         <TextView
             android:id="@+id/tvDescrip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            tools:text="Rick Jones has been Hulk's best bud since day one, but now he's more than a friend...he's a teammate! Transformed by a Gamma energy explosion, A-Bomb's thick, armored skin is just as strong and powerful as it is blue. And when he curls into action, he uses it like a giant bowling ball of destruction!" />
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            tools:text="@string/large_text"/>
 
         <TextView
             android:id="@+id/tvTitleComics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/title_comic"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescrip"
-            android:text="Comics"
-            tools:text="Comics" />
-
+            app:layout_constraintTop_toBottomOf="@+id/tvDescrip"/>
 
         <TextView
             android:id="@+id/tvTitleSeries"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/title_series"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.525"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mrvComics"
-            android:text="Series"
-            tools:text="Series" />
+            android:layout_marginStart="16dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mrvComics"
@@ -89,7 +89,6 @@
             android:background="@color/white"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

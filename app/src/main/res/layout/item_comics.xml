@@ -23,7 +23,8 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:scaleType="centerCrop"
                 cardView:layout_constraintStart_toStartOf="parent"
                 cardView:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

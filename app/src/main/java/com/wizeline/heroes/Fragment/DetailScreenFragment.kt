@@ -4,20 +4,21 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.wizeline.heroes.Adapter.ComicsAdapter
 import com.wizeline.heroes.Adapter.SeriesAdapter
-import com.wizeline.heroes.R
 import com.wizeline.heroes.Result
 
 import com.wizeline.heroes.ViewModel.DetailScreenViewModel
 import com.wizeline.heroes.databinding.DetailScreenFragmentBinding
 
-class DetailScreenFragment(private val dataHero: Result) : Fragment() {
+class DetailScreenFragment() : Fragment() {
     private lateinit var binding: DetailScreenFragmentBinding
     private val comicsAdapter = ComicsAdapter()
     private val seriesAdapter = SeriesAdapter()
     private val viewModel: DetailScreenViewModel by viewModels()
+    private val args: DetailScreenFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,21 +26,14 @@ class DetailScreenFragment(private val dataHero: Result) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DetailScreenFragmentBinding.inflate(inflater, container, false)
-        viewModel.getComics(dataHero)
+        viewModel.getComics(args.result)
         return binding.root
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar, menu)
-        //return super.onCreateOptionsMenu(menu, inflater)
-
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.mrvComics.adapter = comicsAdapter
         binding.mrvSeries.adapter = seriesAdapter
-        infoHero(dataHero)
+        infoHero(args.result)
         setUpObservers()
 
     }

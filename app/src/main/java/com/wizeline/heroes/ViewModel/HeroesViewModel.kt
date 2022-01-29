@@ -15,7 +15,7 @@ class HeroesViewModel() : ViewModel() {
     private var offset = 5;
     private var limit = 5;
     var currentPage = 0;
-    private val usesCases= GetCharacterUsesCase()
+    private val usesCases = GetCharacterUsesCase()
 
     fun getHeroes(offset: Int) {
         usesCases.getCharacters(offset, limit)
@@ -29,16 +29,10 @@ class HeroesViewModel() : ViewModel() {
             })
     }
 
+
     fun nextPage() {
         offset += limit
         getHeroes(offset)
         currentPage++
     }
-
-    fun prevPage() {
-        currentPage--
-        getHeroes(offset - limit)
-        offset -= limit
-    }
-
 }

@@ -1,5 +1,7 @@
 package com.wizeline.heroes
 
+import java.io.Serializable
+
 data class Characters(
     val code: Int,
     val status: String,
@@ -26,7 +28,7 @@ data class Result(
     val thumbnail: Thumbnail,
     val resourceURI: String,
     val comics: ComicList
-)
+):Serializable
 
 data class Thumbnail(
     val path: String,

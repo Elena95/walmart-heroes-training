@@ -1,59 +1,61 @@
 package com.wizeline.heroes
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.commit
-import com.wizeline.heroes.Fragment.DetailScreenFragment
-import com.wizeline.heroes.Fragment.HeroesFragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.wizeline.heroes.ViewModel.MainViewModel
-import com.wizeline.heroes.ViewModel.MyFragments
 import com.wizeline.heroes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     val viewModel: MainViewModel by viewModels()
-    //  private lateinit var navController: NavController
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        observerFragment()
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        binding.navigation.setupWithNavController(navController)
 
-        /* binding = ActivityMainBinding.inflate(layoutInflater)
-         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setupWithNavController(navController)
 
-
-         val navControllerFragment =
-             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-         navController = navControllerFragment.navController
-
-         val inflater = navController.navInflater
-         val graph = inflater.inflate(R.navigation.nav_graph)
-
-
-         navControllerFragment.navController.graph = graph*/
     }
 
-    private fun observerFragment() {
+    /*  private fun observerFragment() {
         viewModel.destination.observe(this) {
             when (it) {
                 is MyFragments.HeroFragment -> {
                     supportFragmentManager.commit {
-                        replace(R.id.fragmentHeroes, HeroesFragment())
+                        //navController.navigate(R.id.heroesFragment)
+
+                        replace(R.id.heroesFragment, HeroesFragment())
 
                     }
                 }
                 is MyFragments.DetailScreenFragment -> {
                     supportFragmentManager.commit {
-                        replace(R.id.fragmentHeroes, DetailScreenFragment(it.dataHero))
+                        //navController.navigate(R.id.detailScreenFragment)
+
+                        replace(R.id.detailScreenFragment, DetailScreenFragment(it.dataHero))
                     }
                 }
+                *//* is MyFragments.SearchFragment -> {
+                     supportFragmentManager.commit {
+                         replace(R.id.fragmentHeroes, SearchFragment())
+                     }
+                 }*//*
+
             }
         }
 
-    }
-
+    }*/
 }
