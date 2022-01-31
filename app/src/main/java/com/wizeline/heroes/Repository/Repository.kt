@@ -10,4 +10,5 @@ interface Repository {
     fun getCharacters(offset: Int, limit: Int): Single<Characters>
     fun getComics(heroData: Result): Single<Comics>
     fun getSeries(heroData: Result): Single<SeriesDataWrapper>
+    fun nameStartsWith(heroName: String): Single<Characters>
 }

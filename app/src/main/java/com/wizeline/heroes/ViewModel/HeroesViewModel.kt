@@ -29,7 +29,6 @@ class HeroesViewModel() : ViewModel() {
             })
     }
 
-
     fun nextPage() {
         offset += limit
         getHeroes(offset)

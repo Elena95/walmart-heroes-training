@@ -30,4 +30,12 @@ interface HeroesServices {
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
     ): Single<SeriesDataWrapper>
+
+    @GET("characters")
+    fun nameStartsWith(
+        @Query("ts") ts: String,
+        @Query("apikey") apikey: String,
+        @Query("hash") hash: String,
+        @Query("nameStartsWith")name:String
+    ): Single<Characters>
 }

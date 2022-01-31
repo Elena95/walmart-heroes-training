@@ -1,6 +1,7 @@
 package com.wizeline.heroes.Repository
 
 import com.wizeline.heroes.*
+import com.wizeline.heroes.NetworkClient.api
 import io.reactivex.rxjava3.core.Single
 
 open class RepositoryImpl() : Repository {
@@ -10,18 +11,21 @@ open class RepositoryImpl() : Repository {
     private val hash = (ts + privateKey + apikey).toMD5()
 
     override fun getCharacters(offset:Int, limit: Int): Single<Characters> {
-        return NetworkClient.api.characters(ts, apikey, hash, offset, limit)
+        return api.characters(ts, apikey, hash, offset, limit)
     }
 
     override fun getComics(heroData: Result): Single<Comics> {
         val idHero = heroData.id
-        return NetworkClient.api.comics(idHero, ts, apikey, hash)
+        return api.comics(idHero, ts, apikey, hash)
     }
 
     override fun getSeries(heroData: Result): Single<SeriesDataWrapper> {
         val idHero = heroData.id
-        return NetworkClient.api.series(idHero, ts, apikey, hash)
+        return api.series(idHero, ts, apikey, hash)
     }
+
+    override fun nameStartsWith(heroname: String):Single<Characters> = api.nameStartsWith(ts, apikey, hash, heroname)
+
 
     // override fun getCharacters(offset: Int, limit: Int): Single<Characters> = api.characters(ts, apikey, hash, offset, limit)
 
