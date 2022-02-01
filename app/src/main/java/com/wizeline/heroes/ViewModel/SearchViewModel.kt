@@ -11,9 +11,11 @@ class SearchViewModel : ViewModel() {
     private val _resultData = MutableLiveData<List<Result>>()
     val resultData: LiveData<List<Result>> = _resultData
     private val usesCase = GetnameStartsWith()
+    var offset = 0;
+    private var limit = 5;
 
-    fun searchHeroes(nameStart: String) {
-        usesCase.nameStartsWith(nameStart)
+    fun searchHeroes(nameStart: String, offset: Int) {
+        usesCase.nameStartsWith(nameStart, offset, limit)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe({ response ->
@@ -22,5 +24,10 @@ class SearchViewModel : ViewModel() {
                 {
                     print("Error")
                 })
+    }
+
+    fun nextPage(nameStart: String) {
+        offset += limit
+        searchHeroes(nameStart, offset)
     }
 }

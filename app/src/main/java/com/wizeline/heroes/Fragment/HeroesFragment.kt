@@ -38,10 +38,9 @@ class HeroesFragment : Fragment() {
         layoutManager = LinearLayoutManager(context)
         binding.mRecyclerView.layoutManager = layoutManager
         navController = findNavController()
-        viewModel.getHeroes(0)
+        viewModel.getHeroes(viewModel.offset)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         heroesAdapter = HeroesAdapter(HeroesAdapter.OnClickListener {

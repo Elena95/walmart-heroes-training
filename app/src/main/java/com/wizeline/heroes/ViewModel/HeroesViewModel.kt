@@ -12,9 +12,8 @@ class HeroesViewModel() : ViewModel() {
 
     private val _resultData = MutableLiveData<List<Result>>()
     val resultData: LiveData<List<Result>> = _resultData
-    private var offset = 5;
+    var offset = 0;
     private var limit = 5;
-    var currentPage = 0;
     private val usesCases = GetCharacterUsesCase()
 
     fun getHeroes(offset: Int) {
@@ -32,6 +31,5 @@ class HeroesViewModel() : ViewModel() {
     fun nextPage() {
         offset += limit
         getHeroes(offset)
-        currentPage++
     }
 }

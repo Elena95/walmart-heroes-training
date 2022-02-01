@@ -36,6 +36,8 @@ interface HeroesServices {
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
-        @Query("nameStartsWith")name:String
+        @Query("nameStartsWith")name:String,
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
     ): Single<Characters>
 }

@@ -4,6 +4,6 @@ import com.wizeline.heroes.Repository.RepositoryImpl
 
 class GetnameStartsWith:RepositoryImpl() {
     private var repository = RepositoryImpl()
-    override fun nameStartsWith(heroStart: String) = repository.nameStartsWith(heroStart)
+    override fun nameStartsWith(heroStart: String, offset: Int, limit: Int) = repository.nameStartsWith(heroStart, offset, limit)
 
 }

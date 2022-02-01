@@ -10,7 +10,7 @@ open class RepositoryImpl() : Repository {
     private val ts = System.currentTimeMillis().toString()
     private val hash = (ts + privateKey + apikey).toMD5()
 
-    override fun getCharacters(offset:Int, limit: Int): Single<Characters> {
+    override fun getCharacters(offset: Int, limit: Int): Single<Characters> {
         return api.characters(ts, apikey, hash, offset, limit)
     }
 
@@ -24,7 +24,8 @@ open class RepositoryImpl() : Repository {
         return api.series(idHero, ts, apikey, hash)
     }
 
-    override fun nameStartsWith(heroname: String):Single<Characters> = api.nameStartsWith(ts, apikey, hash, heroname)
+    override fun nameStartsWith(heroname: String, offset: Int, limit: Int): Single<Characters> =
+        api.nameStartsWith(ts, apikey, hash, heroname, offset, limit)
 
 
     // override fun getCharacters(offset: Int, limit: Int): Single<Characters> = api.characters(ts, apikey, hash, offset, limit)
