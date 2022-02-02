@@ -4,20 +4,25 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.wizeline.heroes.*
 import com.wizeline.heroes.Adapter.ComicsAdapter
 import com.wizeline.heroes.Adapter.SeriesAdapter
-import com.wizeline.heroes.Result
+import com.wizeline.heroes.Repository.RepositoryImpl
 
 import com.wizeline.heroes.ViewModel.DetailScreenViewModel
+import com.wizeline.heroes.ViewModel.HeroesViewModel
 import com.wizeline.heroes.databinding.DetailScreenFragmentBinding
 
 class DetailScreenFragment() : Fragment() {
     private lateinit var binding: DetailScreenFragmentBinding
     private val comicsAdapter = ComicsAdapter()
     private val seriesAdapter = SeriesAdapter()
-    private val viewModel: DetailScreenViewModel by viewModels()
+    private lateinit var viewModel: DetailScreenViewModel
+    //private val viewModel: DetailScreenViewModel by viewModels()
     private val args: DetailScreenFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -26,6 +31,8 @@ class DetailScreenFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DetailScreenFragmentBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this,getViewModelFactory()).get(DetailScreenViewModel::class.java)
+
         viewModel.getComics(args.result)
         return binding.root
     }
@@ -61,6 +68,14 @@ class DetailScreenFragment() : Fragment() {
             }
         }
     }
+
+    private fun getViewModelFactory(): ViewModelProvider.Factory =
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return DetailScreenViewModel(GetComicsUsesCaseImp(RepositoryImpl()),GetSeriesUsesCaseImp(RepositoryImpl())) as T
+            }
+
+        }
 
 
 }

@@ -23,6 +23,7 @@ open class RepositoryImpl() : Repository {
         return NetworkClient.api.series(idHero, ts, apikey, hash)
     }
 
+
     // override fun getCharacters(offset: Int, limit: Int): Single<Characters> = api.characters(ts, apikey, hash, offset, limit)
 
 }
