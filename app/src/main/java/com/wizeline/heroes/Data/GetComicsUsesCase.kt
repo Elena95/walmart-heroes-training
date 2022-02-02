@@ -1,8 +1,8 @@
 package com.wizeline.heroes
 
-import com.wizeline.heroes.Repository.RepositoryImpl
 
-class GetComicsUsesCase() : RepositoryImpl() {
-    private var repository = RepositoryImpl()
-    override fun getComics(heroData: Result) = repository.getComics(heroData)
+import io.reactivex.rxjava3.core.Single
+
+interface GetComicsUsesCase {
+    operator fun invoke(heroData: Result): Single<Comics>
 }

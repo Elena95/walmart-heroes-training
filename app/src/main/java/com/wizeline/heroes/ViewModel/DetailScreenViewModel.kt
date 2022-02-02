@@ -9,20 +9,21 @@ import com.wizeline.heroes.GetSeriesUsesCase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class DetailScreenViewModel() : ViewModel() {
+class DetailScreenViewModel(val getComicsUsesCase: GetComicsUsesCase, val getSeriesUsesCase: GetSeriesUsesCase
+) : ViewModel() {
     private val _comicsData = MutableLiveData<List<Comic>>()
     val comicsData: LiveData<List<Comic>> = _comicsData
     private val _seriesData = MutableLiveData<List<Series>>()
     val seriesData: LiveData<List<Series>> = _seriesData
-    private val usesCasesComic = GetComicsUsesCase()
-    private val usesCasesSeries = GetSeriesUsesCase()
+   /* private val usesCasesComic = getComicsUsesCase()
+    private val usesCasesSeries = getComicsUsesCase()*/
 
     fun getComics(idHero: Result) {
-        usesCasesComic.getComics(idHero)
+        getComicsUsesCase(idHero)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .flatMap({
-                usesCasesSeries.getSeries(idHero)
+                getSeriesUsesCase(idHero)
             }, { comicsResult, seriesResult ->
                 Pair(comicsResult, seriesResult)
             })

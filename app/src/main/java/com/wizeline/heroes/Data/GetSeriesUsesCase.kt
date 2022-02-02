@@ -1,8 +1,13 @@
 package com.wizeline.heroes
 
-import com.wizeline.heroes.Repository.RepositoryImpl
+import io.reactivex.rxjava3.core.Single
 
-class GetSeriesUsesCase : RepositoryImpl() {
-    private var repository = RepositoryImpl()
-    override fun getSeries(heroData: Result) = repository.getSeries(heroData)
+
+interface GetSeriesUsesCase {
+    operator fun invoke(heroData: Result): Single<SeriesDataWrapper>
 }
+
+
+
+
+
