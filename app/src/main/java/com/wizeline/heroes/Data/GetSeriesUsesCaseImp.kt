@@ -1,10 +1,9 @@
 package com.wizeline.heroes
 
-import com.wizeline.heroes.GetSeriesUsesCase
 import com.wizeline.heroes.Repository.Repository
-import com.wizeline.heroes.Result
+import javax.inject.Inject
 
-class GetSeriesUsesCaseImp(private val repository: Repository) : GetSeriesUsesCase {
+class GetSeriesUsesCaseImp @Inject constructor(private val repository: Repository) : GetSeriesUsesCase {
     override fun invoke(heroData: Result) =
         repository.getSeries(heroData)
 }

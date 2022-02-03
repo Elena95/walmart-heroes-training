@@ -1,5 +1,8 @@
-package com.wizeline.heroes
+package com.wizeline.heroes.Network
 
+import com.wizeline.heroes.Characters
+import com.wizeline.heroes.Comics
+import com.wizeline.heroes.SeriesDataWrapper
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

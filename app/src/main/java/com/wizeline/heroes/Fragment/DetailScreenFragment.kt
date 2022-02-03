@@ -16,12 +16,14 @@ import com.wizeline.heroes.Repository.RepositoryImpl
 import com.wizeline.heroes.ViewModel.DetailScreenViewModel
 import com.wizeline.heroes.ViewModel.HeroesViewModel
 import com.wizeline.heroes.databinding.DetailScreenFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailScreenFragment() : Fragment() {
     private lateinit var binding: DetailScreenFragmentBinding
     private val comicsAdapter = ComicsAdapter()
     private val seriesAdapter = SeriesAdapter()
-    private lateinit var viewModel: DetailScreenViewModel
+    private val viewModel: DetailScreenViewModel by viewModels()
     //private val viewModel: DetailScreenViewModel by viewModels()
     private val args: DetailScreenFragmentArgs by navArgs()
 
@@ -31,7 +33,7 @@ class DetailScreenFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DetailScreenFragmentBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this,getViewModelFactory()).get(DetailScreenViewModel::class.java)
+       // viewModel = ViewModelProvider(this,getViewModelFactory()).get(DetailScreenViewModel::class.java)
 
         viewModel.getComics(args.result)
         return binding.root
@@ -68,14 +70,14 @@ class DetailScreenFragment() : Fragment() {
             }
         }
     }
-
+/*
     private fun getViewModelFactory(): ViewModelProvider.Factory =
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return DetailScreenViewModel(GetComicsUsesCaseImp(RepositoryImpl()),GetSeriesUsesCaseImp(RepositoryImpl())) as T
             }
 
-        }
+        }*/
 
 
 }

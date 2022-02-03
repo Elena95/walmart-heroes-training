@@ -3,27 +3,27 @@ package com.wizeline.heroes.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.wizeline.heroes.GetnameStartsWith
+import androidx.lifecycle.viewModelScope
+import com.wizeline.heroes.GetnameStartsWithUsesCase
 import com.wizeline.heroes.Result
-import io.reactivex.rxjava3.schedulers.Schedulers
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel : ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor(val nameStartsWith: GetnameStartsWithUsesCase) :
+    ViewModel() {
     private val _resultData = MutableLiveData<List<Result>>()
     val resultData: LiveData<List<Result>> = _resultData
-    private val usesCase = GetnameStartsWith()
     var offset = 0;
     private var limit = 5;
 
     fun searchHeroes(nameStart: String, offset: Int) {
-        usesCase.nameStartsWith(nameStart, offset, limit)
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .subscribe({ response ->
-                _resultData.postValue(response.data.results)
-            },
-                {
-                    print("Error")
-                })
+        viewModelScope.launch {
+            val result = nameStartsWith(nameStart, offset, limit)
+            _resultData.postValue(result.data.results)
+        }
+
     }
 
     fun nextPage(nameStart: String) {

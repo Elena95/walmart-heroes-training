@@ -17,8 +17,9 @@ import com.wizeline.heroes.Adapter.HeroesAdapter
 import com.wizeline.heroes.Result
 import com.wizeline.heroes.ViewModel.SearchViewModel
 import com.wizeline.heroes.databinding.SearchFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SearchFragment() : Fragment() {
     private lateinit var binding: SearchFragmentBinding
     private lateinit var heroesAdapter: HeroesAdapter
