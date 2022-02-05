@@ -15,8 +15,8 @@ class SearchViewModel @Inject constructor(val nameStartsWith: GetnameStartsWithU
     ViewModel() {
     private val _resultData = MutableLiveData<List<Result>>()
     val resultData: LiveData<List<Result>> = _resultData
-    var offset = 0;
-    private var limit = 5;
+    var offset = 0
+    private var limit = 5
 
     fun searchHeroes(nameStart: String, offset: Int) {
         viewModelScope.launch {

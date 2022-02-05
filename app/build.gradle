@@ -30,10 +30,9 @@ android {
     release {
       buildConfigField 'String', 'BASE_URL', '"https://gateway.marvel.com/v1/public/"'
     }
-    /*release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-    }*/
+    QA {
+      buildConfigField 'String', 'BASE_URL', '"https://gateway.marvel.com/v1/public/"'
+    }
   }
 
   dataBinding{
@@ -62,6 +61,7 @@ dependencies {
 
 
   implementation "com.google.dagger:hilt-android:$hilt_version"
+  implementation 'androidx.test:core-ktx:1.4.0'
   kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
   implementation "com.google.firebase:firebase-config-ktx:19.2.0"
@@ -82,8 +82,11 @@ dependencies {
   // Retrofit
   implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
   implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+// Test helpers for LiveData
+  testImplementation "android.arch.core:core-testing:1.1.0"
 
   testImplementation 'junit:junit:4.+'
   androidTestImplementation 'androidx.test.ext:junit:1.1.2'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+  testImplementation 'org.mockito:mockito-core:2.10.0'
 }

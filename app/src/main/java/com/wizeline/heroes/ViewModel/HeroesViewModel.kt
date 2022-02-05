@@ -1,5 +1,6 @@
 package com.wizeline.heroes.ViewModel
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,10 +28,13 @@ class HeroesViewModel @Inject constructor(
                 _resultData.postValue(response.data.results)
 
             }, {
-                println("ERROR")
+                onFailureGetHeroes(it)
             })
     }
 
+    fun onFailureGetHeroes(it: Throwable){
+        print("Error $it")
+    }
     fun nextPage() {
         offset += limit
         getHeroes(offset)
