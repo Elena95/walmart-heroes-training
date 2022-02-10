@@ -77,8 +77,8 @@ class HeroesFragment : Fragment() {
                 if(it.size>0){
                     idHeroService = it[it.size - 1].id
                 }
-                if(listResult.size==0||//primera vez que se carga la vista
-                    (idLastHeroList!=idHeroService)) {//si los ids son diferentes entonces hay heroes nuevos y los agregamos
+                if(listResult.size==0||
+                    (idLastHeroList!=idHeroService)) {
                     if (it.isNotEmpty()) {
                         listResult.addAll(it)
                         heroesAdapter.submitList(listResult.toMutableList())

@@ -55,7 +55,7 @@ class SearchFragment() : Fragment() {
         binding.mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if (isLastItemVisible(layoutManager)) {
+                if (isLastVisible(layoutManager)) {
                     viewModel.nextPage(name)
                 }
             }
@@ -87,7 +87,7 @@ class SearchFragment() : Fragment() {
 
     }
 
-    private fun isLastItemVisible(layoutManager: LinearLayoutManager) =
+    private fun isLastVisible(layoutManager: LinearLayoutManager) =
         layoutManager.findLastCompletelyVisibleItemPosition() == layoutManager.itemCount - 1
 
     private fun observeViewModel() {
