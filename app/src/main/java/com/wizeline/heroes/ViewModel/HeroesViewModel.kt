@@ -1,6 +1,5 @@
 package com.wizeline.heroes.ViewModel
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,7 +25,6 @@ class HeroesViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
                 _resultData.postValue(response.data.results)
-
             }, {
                 onFailureGetHeroes(it)
             })
@@ -39,4 +37,5 @@ class HeroesViewModel @Inject constructor(
         offset += limit
         getHeroes(offset)
     }
+
 }

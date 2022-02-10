@@ -28,6 +28,8 @@ class SearchFragment() : Fragment() {
     private lateinit var layoutManager: LinearLayoutManager
     private var name = ""
     private val listResult = mutableListOf<Result>()
+    private var goBack = 0
+
 
 
     override fun onCreateView(
@@ -45,8 +47,9 @@ class SearchFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         heroesAdapter = HeroesAdapter(HeroesAdapter.OnClickListener {
+            goBack = 1
             navController.navigate(
-                HeroesFragmentDirections.actionHeroesFragmentToDetailScreenFragment(
+                SearchFragmentDirections.actionSearchFragmentToDetailScreenFragment(
                     it,
                     it.name
                 )
@@ -63,6 +66,16 @@ class SearchFragment() : Fragment() {
         })
 
         observeViewModel()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.startPagin()
+        heroesAdapter.submitList(listResult.toList())
+        /*val distinct = listResult.toSet().toList()
+        listResult.clear()
+        listResult.addAll(distinct)
+        heroesAdapter.submitList(listResult.toList())*/
     }
 
     private fun search() {
@@ -88,9 +101,11 @@ class SearchFragment() : Fragment() {
     private fun observeViewModel() {
         viewModel.resultData.observe(viewLifecycleOwner) {
             it?.let {
-                listResult.addAll(it)
-                if (it.isNotEmpty()) {
-                    heroesAdapter.submitList(listResult.toList())
+                if (goBack == 0) {
+                    if (it.isNotEmpty()) {
+                        listResult.addAll(it)
+                        heroesAdapter.submitList(listResult.toList())
+                    }
                 }
             }
         }

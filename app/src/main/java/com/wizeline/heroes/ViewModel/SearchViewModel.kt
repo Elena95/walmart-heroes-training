@@ -23,11 +23,13 @@ class SearchViewModel @Inject constructor(val nameStartsWith: GetnameStartsWithU
             val result = nameStartsWith(nameStart, offset, limit)
             _resultData.postValue(result.data.results)
         }
-
     }
 
     fun nextPage(nameStart: String) {
         offset += limit
         searchHeroes(nameStart, offset)
+    }
+    fun startPagin(){
+        _resultData.postValue(emptyList())
     }
 }

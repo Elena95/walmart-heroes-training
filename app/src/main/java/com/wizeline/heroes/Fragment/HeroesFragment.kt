@@ -5,49 +5,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wizeline.heroes.Adapter.HeroesAdapter
-import com.wizeline.heroes.GetHeroesUsesCaseImp
-import com.wizeline.heroes.Repository.RepositoryImpl
 import com.wizeline.heroes.Result
 import com.wizeline.heroes.ViewModel.HeroesViewModel
-import com.wizeline.heroes.ViewModel.MainViewModel
 import com.wizeline.heroes.databinding.FragmentHeroesBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-//activityViewModels es el viewModel del padre del fragment
 @AndroidEntryPoint
 class HeroesFragment : Fragment() {
-    //@Inject lateinit var logger: LoggerLocalDataSource
-    //@Inject lateinit var dateFormatter: DateFormatter
     private lateinit var binding: FragmentHeroesBinding
     private val viewModel: HeroesViewModel by viewModels()
-    private val activityViewModel: MainViewModel by activityViewModels()
     private lateinit var heroesAdapter: HeroesAdapter
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var navController: NavController
-    private val listResult = mutableListOf<Result>()
-
+    private var listResult = mutableListOf<Result>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-       // viewModel = ViewModelProvider(this,getViewModelFactory()).get(HeroesViewModel::class.java)
         binding = FragmentHeroesBinding.inflate(inflater, container, false)
         layoutManager = LinearLayoutManager(context)
         binding.mRecyclerView.layoutManager = layoutManager
         navController = findNavController()
-        viewModel.getHeroes(viewModel.offset)
         return binding.root
     }
 
@@ -61,7 +47,6 @@ class HeroesFragment : Fragment() {
             )
         })
         binding.mRecyclerView.adapter = heroesAdapter
-
         binding.mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -71,7 +56,12 @@ class HeroesFragment : Fragment() {
             }
         })
         observeViewModel()
-
+        //Si mi model no tiene nada no
+        if(listResult.size==0) {
+            viewModel.getHeroes(viewModel.offset)
+        }else{
+            heroesAdapter.submitList(listResult.toMutableList())
+        }
     }
 
     private fun isLastItemVisible(layoutManager: LinearLayoutManager) =
@@ -80,25 +70,37 @@ class HeroesFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.resultData.observe(viewLifecycleOwner) {
             it?.let {
-                listResult.addAll(it)
-                if (it.isNotEmpty()) {
-                    heroesAdapter.submitList(listResult.toList())
-                    /*heroesAdapter.submitList(listResult)
-                    heroesAdapter.notifyDataSetChanged()*/
+                var idLastHeroList=0
+                if(listResult.size>0) {
+                    idLastHeroList = listResult[listResult.size - 1].id
                 }
+                var idHeroService=0
+                if(it.size>0){
+                    idHeroService = it[it.size - 1].id
+                }
+                if(listResult.size==0||//primera vez que se carga la vista
+                    (idLastHeroList!=idHeroService)) {//si los ids son diferentes entonces hay heroes nuevos y los agregamos
+                    if (it.isNotEmpty()) {
+                        listResult.addAll(it)
+                        heroesAdapter.submitList(listResult.toMutableList())
+                    }
+                }
+
             }
         }
 
     }
 
-  /*  private fun getViewModelFactory(): ViewModelProvider.Factory =
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return HeroesViewModel(GetHeroesUsesCaseImp(RepositoryImpl())) as T
-            }
+    /*  private fun getViewModelFactory(): ViewModelProvider.Factory =
+          object : ViewModelProvider.Factory {
+              override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                  return HeroesViewModel(GetHeroesUsesCaseImp(RepositoryImpl())) as T
+              }
 
-        }*/
+          }*/
 
 }
+
+
 
 
