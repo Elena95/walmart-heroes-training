@@ -24,7 +24,6 @@ class DetailScreenFragment() : Fragment() {
     private val comicsAdapter = ComicsAdapter()
     private val seriesAdapter = SeriesAdapter()
     private val viewModel: DetailScreenViewModel by viewModels()
-    //private val viewModel: DetailScreenViewModel by viewModels()
     private val args: DetailScreenFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -33,8 +32,6 @@ class DetailScreenFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DetailScreenFragmentBinding.inflate(inflater, container, false)
-       // viewModel = ViewModelProvider(this,getViewModelFactory()).get(DetailScreenViewModel::class.java)
-
         viewModel.getComics(args.result)
         return binding.root
     }
@@ -44,7 +41,6 @@ class DetailScreenFragment() : Fragment() {
         binding.mrvSeries.adapter = seriesAdapter
         infoHero(args.result)
         setUpObservers()
-
     }
 
     fun infoHero(hero: Result) = with(binding) {
@@ -53,7 +49,6 @@ class DetailScreenFragment() : Fragment() {
         Glide.with(binding.root.context)
             .load("${hero.thumbnail.path}.${hero.thumbnail.extension}")
             .into(imageHeroe)
-        //.error(R.drawable.ic_launcher_foreground)
     }
 
     private fun setUpObservers() {
@@ -70,14 +65,4 @@ class DetailScreenFragment() : Fragment() {
             }
         }
     }
-/*
-    private fun getViewModelFactory(): ViewModelProvider.Factory =
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return DetailScreenViewModel(GetComicsUsesCaseImp(RepositoryImpl()),GetSeriesUsesCaseImp(RepositoryImpl())) as T
-            }
-
-        }*/
-
-
 }

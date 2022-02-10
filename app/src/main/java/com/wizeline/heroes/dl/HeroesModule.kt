@@ -1,4 +1,4 @@
-package com.wizeline.heroes.dil
+package com.wizeline.heroes.dl
 
 import com.wizeline.heroes.*
 import com.wizeline.heroes.Network.HeroesServices
@@ -10,14 +10,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
 object HeroesModule {
-
     @Provides
     fun getServicesRX(): HeroesServices {
         return NetworkClient().getClientJavaRX()

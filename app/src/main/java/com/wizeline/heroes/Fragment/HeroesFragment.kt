@@ -56,7 +56,6 @@ class HeroesFragment : Fragment() {
             }
         })
         observeViewModel()
-        //Si mi model no tiene nada no
         if(listResult.size==0) {
             viewModel.getHeroes(viewModel.offset)
         }else{
@@ -88,17 +87,7 @@ class HeroesFragment : Fragment() {
 
             }
         }
-
     }
-
-    /*  private fun getViewModelFactory(): ViewModelProvider.Factory =
-          object : ViewModelProvider.Factory {
-              override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                  return HeroesViewModel(GetHeroesUsesCaseImp(RepositoryImpl())) as T
-              }
-
-          }*/
-
 }
 
 

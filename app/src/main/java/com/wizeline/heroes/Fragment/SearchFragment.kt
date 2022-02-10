@@ -1,8 +1,6 @@
 package com.wizeline.heroes.Fragment
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +27,6 @@ class SearchFragment() : Fragment() {
     private var name = ""
     private val listResult = mutableListOf<Result>()
     private var goBack = 0
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,10 +68,6 @@ class SearchFragment() : Fragment() {
         super.onResume()
         viewModel.startPagin()
         heroesAdapter.submitList(listResult.toList())
-        /*val distinct = listResult.toSet().toList()
-        listResult.clear()
-        listResult.addAll(distinct)
-        heroesAdapter.submitList(listResult.toList())*/
     }
 
     private fun search() {

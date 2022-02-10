@@ -33,15 +33,19 @@ class GetHeroesUsesCaseTest : TestCase() {
             .assertComplete()
     }
 
-   /* @Test
+    @Test
+    fun testHeroesUseCase_isNotNull() {
+        val response = charactersPOJOModel()
+        Mockito.`when` (mockRepository.getCharacters(anyInt(), anyInt()) ).thenReturn(Single.just(response))
+        assertNotNull(mockRepository.getCharacters(anyInt(), anyInt()))
+    }
+
+    @Test
     fun testHeroesUseCases_getHeroes_Error() {
-
         val response = Throwable("Error")
-
          Mockito.`when`(mockRepository.getCharacters(anyInt(), anyInt()))
              .thenReturn(throw response)
-
-    }*/
+    }
 
     @Test
     fun testHeroesUseCases_getHeroes_response() {

@@ -13,6 +13,7 @@ val result2 = Result(1017100, "A-Bomb (HAS)", "Rick Jones has been Hulk's best b
 
 val result = listOf(result1,result2)
 val data = Data(0, 2, 1559, 2, result)
+val dataSearch = Data(0, 2, 1559, 2, listOf(result1))
 
 fun charactersPOJOModel() = Characters(
         200, "OK", "© 2022 MARVEL",
@@ -21,3 +22,7 @@ fun charactersPOJOModel() = Characters(
         "d410226f5ac4473e4429c7310d446dfbf6175bd0", data)
 
 
+fun searchPOJO()=Characters(200, "OK", "© 2022 MARVEL",
+        "Data provided by Marvel. © 2022 MARVEL",
+        "<a href=\"http://marvel.com\">Data provided by Marvel. © 2022 MARVEL</a>",
+        "d410226f5ac4473e4429c7310d446dfbf6175bd0", dataSearch)

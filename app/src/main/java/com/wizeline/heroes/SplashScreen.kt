@@ -20,27 +20,19 @@ class SplashScreen : AppCompatActivity() {
     private val splashTimeout: Long = 2500
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /* val configSettings:FirebaseRemoteConfigSettings= remoteConfigSettings {
-             minimumFetchIntervalInSeconds = 10
-         }
-         val fireBaseConfig:FirebaseRemoteConfig =Firebase.remoteConfig
-         fireBaseConfig.setConfigSettingsAsync(configSettings)*/
-
+        setContentView(R.layout.splash_screen)
         Firebase.remoteConfig.fetchAndActivate().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val isAppBlocked = Firebase.remoteConfig.getBoolean("isAppBlocked")
                 if (isAppBlocked) {
+                    Toast.makeText(
+                        this,R.string.error,
+                        Toast.LENGTH_LONG
+                    ).show()
                     Handler(Looper.getMainLooper()).postDelayed({
-                        Toast.makeText(
-                            this,
-                            "The application can't be used at the moment",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        moveTaskToBack(true);
-                        exitProcess(-1)
+                        finish()
                     }, splashTimeout)
                 } else {
-                    setContentView(R.layout.splash_screen)
                     Handler(Looper.getMainLooper()).postDelayed({
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()

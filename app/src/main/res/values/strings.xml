@@ -8,6 +8,6 @@
   <string name="example">Example</string>
   <string name="search">Search</string>
   <string name="result">Results</string>
-
+  <string name="error">The application cant be used at the moment</string>
 
 </resources>

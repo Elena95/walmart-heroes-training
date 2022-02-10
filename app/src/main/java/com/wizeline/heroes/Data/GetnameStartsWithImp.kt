@@ -7,3 +7,5 @@ class GetnameStartsWithImp @Inject constructor(private val repository: Repositor
     override suspend fun invoke(heroname: String, offset: Int, limit: Int) =
         repository.nameStartsWith(heroname,offset, limit)
 }
+
+//Por que heredar y no extender, en kotlin estamos extendiendo por ser una interfaz

@@ -20,8 +20,5 @@ class NetworkClient{
         return api
             .build()
             .create(HeroesServicesCorrutina::class.java)
-
     }
-    //clase que construya el cliente y regrese el api ya construido
-
 }
