@@ -25,7 +25,6 @@ class DetailScreenFragment() : Fragment() {
     private val seriesAdapter = SeriesAdapter()
     private val viewModel: DetailScreenViewModel by viewModels()
     private val args: DetailScreenFragmentArgs by navArgs()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
