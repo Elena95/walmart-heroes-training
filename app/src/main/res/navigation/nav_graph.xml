@@ -3,28 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_stepper_fragment">
+    app:startDestination="@id/heroesFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/heroesFragment"
         android:name="com.wizeline.heroes.Fragment.HeroesFragment"
+        android:label="Heroes"
         tools:layout="@layout/fragment_heroes">
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_heroesFragment_to_detailScreenFragment"
+            app:destination="@id/detailScreenFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.wizeline.heroes.Fragment.HeroesFragment2"
-        tools:layout="@layout/fragment_heroes2">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+        android:id="@+id/detailScreenFragment"
+        android:name="com.wizeline.heroes.Fragment.DetailScreenFragment"
+        android:label="{name}"
+        tools:layout="@layout/detail_screen_fragment">
+        <argument
+            android:name="result"
+            app:argType="com.wizeline.heroes.Result" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_stepper_fragment"
-        android:name="com.wizeline.heroes.Fragment.StepperFragment"
-        android:label="StepperFragment" />
+        android:id="@+id/searchFragment"
+        android:name="com.wizeline.heroes.Fragment.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/search_fragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_detailScreenFragment"
+            app:destination="@id/detailScreenFragment" />
+    </fragment>
 </navigation>

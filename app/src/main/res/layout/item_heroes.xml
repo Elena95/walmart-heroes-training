@@ -18,7 +18,6 @@
 
             <ImageView
                 android:id="@+id/image"
-
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="8dp"
@@ -59,14 +58,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:autoSizeTextType="uniform"
                 cardView:layout_constraintBottom_toBottomOf="parent"
                 cardView:layout_constraintEnd_toEndOf="parent"
                 cardView:layout_constraintStart_toEndOf="@+id/image"
                 cardView:layout_constraintStart_toStartOf="@id/tvName"
                 cardView:layout_constraintTop_toBottomOf="@+id/tvName"
                 cardView:layout_constraintVertical_bias="0.466"
-                tools:text="Rick Jones has been Hulk's best bud since day one, but now he's more than a friend...he's a teammate! Transformed by a Gamma energy explosion, A-Bomb's thick, armored skin is just as strong and powerful as it is blue. And when he curls into action, he uses it like a giant bowling ball of destruction!" />
+                tools:text="@string/large_text" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
