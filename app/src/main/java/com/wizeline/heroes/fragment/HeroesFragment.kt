@@ -23,7 +23,7 @@ class HeroesFragment : Fragment() {
     private lateinit var heroesAdapter: HeroesAdapter
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var navController: NavController
-    private var listResult = mutableListOf<Result>()
+   // private var listResult = mutableListOf<Result>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,11 +56,7 @@ class HeroesFragment : Fragment() {
             }
         })
         observeViewModel()
-        if(listResult.size==0) {
-            viewModel.getHeroes(viewModel.offset)
-        }else{
-            heroesAdapter.submitList(listResult.toMutableList())
-        }
+            viewModel.getListHeroes()
     }
 
     private fun isLastItemVisible(layoutManager: LinearLayoutManager) =
@@ -69,22 +65,9 @@ class HeroesFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.resultData.observe(viewLifecycleOwner) {
             it?.let {
-                var idLastHeroList=0
-                if(listResult.size>0) {
-                    idLastHeroList = listResult[listResult.size - 1].id
+                if (it.isNotEmpty()) {
+                    heroesAdapter.submitList(it.toMutableList())
                 }
-                var idHeroService=0
-                if(it.isNotEmpty()){
-                    idHeroService = it[it.size - 1].id
-                }
-                if(listResult.size==0||
-                    (idLastHeroList!=idHeroService)) {
-                    if (it.isNotEmpty()) {
-                        listResult.addAll(it)
-                        heroesAdapter.submitList(listResult.toMutableList())
-                    }
-                }
-
             }
         }
     }

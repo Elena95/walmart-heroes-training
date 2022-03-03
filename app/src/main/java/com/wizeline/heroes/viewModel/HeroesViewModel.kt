@@ -17,21 +17,41 @@ class HeroesViewModel @Inject constructor(
 
     private val _resultData = MutableLiveData<List<Result>>()
     val resultData: LiveData<List<Result>> = _resultData
-    var offset = 0;
-    private var limit = 5;
+    var offset = 0
+    private var limit = 5
+    private var listResult = mutableListOf<Result>()
+    var idLastHeroList=0
+    var idHeroService=0
 
     fun getHeroes(offset: Int) {
         getHeroesUsesCase(offset, limit)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
-                _resultData.postValue(response.data.results)
+                if(response.data.results.isNotEmpty()){
+                    idHeroService = response.data.results[response.data.results.size - 1].id
+                }
+                if(listResult.size==0||
+                    (idLastHeroList!=idHeroService)) {
+                    if (response.data.results.isNotEmpty()) {
+                        listResult.addAll(response.data.results)
+                        _resultData.postValue(listResult)
+                    }
+                }
             }, {
                 onFailureGetHeroes(it)
             })
     }
 
-    fun onFailureGetHeroes(it: Throwable){
+    fun getListHeroes(){
+        if(listResult.size==0) {
+        getHeroes(offset)
+        }else{
+            _resultData.postValue(listResult)
+        }
+    }
+
+    private fun onFailureGetHeroes(it: Throwable){
         print("Error $it")
     }
     fun nextPage() {
