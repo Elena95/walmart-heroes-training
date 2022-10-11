@@ -5,10 +5,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.wizeline.heroes.Common.charactersPOJOModel
 import com.wizeline.heroes.GetHeroesUsesCase
-import com.wizeline.heroes.Result
 import io.reactivex.rxjava3.core.Single
 import junit.framework.TestCase
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,8 +21,12 @@ class HeroesViewModelTest : TestCase() {
     @JvmField
     val rule = InstantTaskExecutorRule()
 
+    //val observerState:Observer<Result>=mock()
+    //val observerState2 =mock(Observer<Result>::class.java)
+
     val getHeroesUsesCase = mock(GetHeroesUsesCase::class.java)
     private val viewmodel by lazy { HeroesViewModel(getHeroesUsesCase) }
+
 
 
     @Test
@@ -32,10 +34,13 @@ class HeroesViewModelTest : TestCase() {
         val response = charactersPOJOModel()
         Mockito.`when`(viewmodel.getHeroesUsesCase(anyInt(),anyInt()))
             .thenReturn(Single.just(response))
-        val expectedList = charactersPOJOModel()
+
+        //viewmodel.resultData.observeForever(observerState)
+        //viewmodel.updateCryptoList()
+
         viewmodel.getHeroesUsesCase(0,2)
             .test()
-            .assertValue(expectedList)
+            .assertValue(response)
 
     }
 

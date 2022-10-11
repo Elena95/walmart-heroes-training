@@ -7,12 +7,9 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
-import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
-import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class SplashScreen : AppCompatActivity() {
@@ -29,7 +26,12 @@ class SplashScreen : AppCompatActivity() {
             if (task.isSuccessful) {
                 val isAppBlocked = Firebase.remoteConfig.getBoolean("isAppBlocked")
                 if (isAppBlocked) {
-                    Toast.makeText(this, "Is Blocked", Toast.LENGTH_SHORT).show()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        Toast.makeText(this, "The application can't be used at the moment", Toast.LENGTH_LONG).show()
+                        moveTaskToBack(true);
+                        exitProcess(-1)
+                    }, splashTimeout)
+
                 } else {
                     setContentView(R.layout.splash_screen)
                     Handler(Looper.getMainLooper()).postDelayed({

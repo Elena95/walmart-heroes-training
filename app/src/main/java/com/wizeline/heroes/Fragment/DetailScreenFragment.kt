@@ -24,6 +24,8 @@ class DetailScreenFragment() : Fragment() {
     private val comicsAdapter = ComicsAdapter()
     private val seriesAdapter = SeriesAdapter()
     private val viewModel: DetailScreenViewModel by viewModels()
+    private val viewModelHeroes: HeroesViewModel by viewModels()
+
     //private val viewModel: DetailScreenViewModel by viewModels()
     private val args: DetailScreenFragmentArgs by navArgs()
 
@@ -32,6 +34,7 @@ class DetailScreenFragment() : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = DetailScreenFragmentBinding.inflate(inflater, container, false)
        // viewModel = ViewModelProvider(this,getViewModelFactory()).get(DetailScreenViewModel::class.java)
 

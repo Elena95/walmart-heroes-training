@@ -26,16 +26,13 @@ import javax.inject.Inject
 //activityViewModels es el viewModel del padre del fragment
 @AndroidEntryPoint
 class HeroesFragment : Fragment() {
-    //@Inject lateinit var logger: LoggerLocalDataSource
-    //@Inject lateinit var dateFormatter: DateFormatter
     private lateinit var binding: FragmentHeroesBinding
     private val viewModel: HeroesViewModel by viewModels()
     private val activityViewModel: MainViewModel by activityViewModels()
     private lateinit var heroesAdapter: HeroesAdapter
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var navController: NavController
-    private val listResult = mutableListOf<Result>()
-
+    private var listResult = mutableListOf<Result>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +50,7 @@ class HeroesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         heroesAdapter = HeroesAdapter(HeroesAdapter.OnClickListener {
+            //viewModel.startPagin()
             navController.navigate(
                 HeroesFragmentDirections.actionHeroesFragmentToDetailScreenFragment(
                     it,
@@ -67,11 +65,20 @@ class HeroesFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
                 if (isLastItemVisible(layoutManager)) {
                     viewModel.nextPage()
+
                 }
             }
         })
         observeViewModel()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val distinct = listResult.toSet().toList()
+        listResult.clear()
+        listResult.addAll(distinct)
+        //heroesAdapter.notifyDataSetChanged()
     }
 
     private fun isLastItemVisible(layoutManager: LinearLayoutManager) =
@@ -80,6 +87,7 @@ class HeroesFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.resultData.observe(viewLifecycleOwner) {
             it?.let {
+
                 listResult.addAll(it)
                 if (it.isNotEmpty()) {
                     heroesAdapter.submitList(listResult.toList())

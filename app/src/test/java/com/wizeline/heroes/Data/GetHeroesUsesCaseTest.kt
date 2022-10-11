@@ -48,12 +48,9 @@ class GetHeroesUsesCaseTest : TestCase() {
         val response = charactersPOJOModel()
         Mockito.`when`(mockRepository.getCharacters(anyInt(), 0))
             .thenReturn(Single.just(response))
-
-        val expectedList = charactersPOJOModel()
-
         UseCase(0, 2)
             .test()
-            .assertValue(expectedList)
+            .assertValue(response)
     }
 
 }

@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/drawable/ic_launcher_back.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/drawable/ic_launcher_list.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/drawable/ic_launcher_search.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19655797101449277" />
+        <entry key="app/src/main/res/layout/detail_screen_fragment.xml" value="0.27434613244296047" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.19655797101449277" />
+        <entry key="app/src/main/res/layout/fragment_heroes.xml" value="0.19655797101449277" />
+        <entry key="app/src/main/res/layout/item_comic_series.xml" value="0.19655797101449277" />
+        <entry key="app/src/main/res/layout/item_comics.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/layout/item_heroes.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/layout/search_fragment.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/splash_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/bottom_view_navigation.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/menu/search_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/toolbar.xml" value="0.2760416666666667" />
+      </map>
+    </option>
+  </component>
   <component name="MarkdownNavigator.ProfileManager" plain-text-search-scope="Project Files" />
   <component name="MarkdownProjectSettings" wasCopied="true">
     <PreviewSettings splitEditorLayout="SPLIT" splitEditorPreview="PREVIEW" useGrayscaleRendering="false" zoomFactor="1.0" maxImageWidth="0" showGitHubPageIfSynced="false" allowBrowsingInPreview="false" synchronizePreviewPosition="true" highlightPreviewType="NONE" highlightFadeOut="5" highlightOnTyping="true" synchronizeSourcePosition="true" verticallyAlignSourceAndPreviewSyncPosition="true" showSearchHighlightsInPreview="false" showSelectionInPreview="true" openRemoteLinks="true" replaceUnicodeEmoji="false" lastLayoutSetsDefault="false">

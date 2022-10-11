@@ -1,6 +1,6 @@
 package com.wizeline.heroes.ViewModel
 
-import android.widget.Toast
+import android.content.ClipData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +18,7 @@ class HeroesViewModel @Inject constructor(
     private val _resultData = MutableLiveData<List<Result>>()
     val resultData: LiveData<List<Result>> = _resultData
     var offset = 0;
-    private var limit = 5;
+    var limit = 5;
 
     fun getHeroes(offset: Int) {
         getHeroesUsesCase(offset, limit)
@@ -39,4 +39,9 @@ class HeroesViewModel @Inject constructor(
         offset += limit
         getHeroes(offset)
     }
+
+    fun startPagin(){
+        offset-=5
+    }
+
 }
